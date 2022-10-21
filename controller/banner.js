@@ -8,7 +8,7 @@ const connection2 = mysql.createConnection({
     port: process.env.DB_PORT,
     host: '127.0.0.1',
     user: 'root',
-    password: 'root',
+    password: 'admin',
     database: 'di'
 });
 
@@ -20,7 +20,6 @@ const getBanner = (req, res) => {
             return;
         }
         res.json({
-            ok: true,
             results
         })
     });
