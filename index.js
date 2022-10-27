@@ -32,7 +32,9 @@ app.use(express.static(publicPath));
 app.use('/api/login', require('./routes/auth'));
 app.use('/api/banner', require('./routes/auth'));
 app.use('/api/disparcher', require('./routes/auth'));
-app.use('/api/course', require('./routes/auth'));
+app.use('/api/category', require('./routes/auth'));
+
+app.use('/api/user', require('./routes/auth'));
 
 
 

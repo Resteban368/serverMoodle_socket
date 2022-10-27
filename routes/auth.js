@@ -8,7 +8,7 @@ const { getBanner } = require('../controller/banner');
 const { getBannerById } = require('../controller/banner');
 const {getDisparcher, getDisparcherrById } = require('../controller/dispacher');
 const {getCategory, getCategoryById } = require('../controller/category');
-
+const {getUsers, getUserById,getRolUser,updateUser } = require('../controller/user');
 const router = Router();
 
 
@@ -21,8 +21,14 @@ router.get('/id/:id', getBannerById);
 router.get('/tarea', getDisparcher);
 router.get('/tarea/:id', getDisparcherrById);
 
-router.get('/Category', getCategory);
+router.get('/todas', getCategory);
 router.get('/Category/:id', getCategoryById);
 
+
+router.get('/usuarios', getUsers);
+router.get('/User/:id', getUserById);
+router.get('/Rol/:id', getRolUser);
+//ruta para actualizar la informacion del usuario
+router.put('/User/:id', updateUser);
 
 module.exports = router;
