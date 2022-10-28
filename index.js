@@ -37,6 +37,10 @@ app.use('/api/category', require('./routes/auth'));
 app.use('/api/user', require('./routes/auth'));
 
 
+//ruta para obtener la hora del servidor
+app.use('/api/hora', require('./routes/auth'));
+
+
 
 
 server.listen(process.env.PORT, (err) => {

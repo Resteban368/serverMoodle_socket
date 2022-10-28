@@ -9,6 +9,8 @@ const { getBannerById } = require('../controller/banner');
 const {getDisparcher, getDisparcherrById } = require('../controller/dispacher');
 const {getCategory, getCategoryById } = require('../controller/category');
 const {getUsers, getUserById,getRolUser,updateUser } = require('../controller/user');
+const {getHora} = require('../controller/hora');
+
 const router = Router();
 
 
@@ -31,4 +33,6 @@ router.get('/Rol/:id', getRolUser);
 //ruta para actualizar la informacion del usuario
 router.put('/User/:id', updateUser);
 
+//ruta para obtener la hora del servidor
+router.get('/hora', getHora);
 module.exports = router;
