@@ -44,13 +44,12 @@ const getUserById = (req, res) => {
 //obtener el rol del usuario
 const getRolUser = (req, res) => {
     const { id } = req.params;
-    connection2.query('SELECT * FROM mdl_role_assignments WHERE userid = ?', [id], (err, results, fields) => {
+    connection2.query('SELECT * FROM mdl_role_assignments INNER JOIN mdl_role ON mdl_role_assignments.roleid = mdl_role.id where mdl_role_assignments.userid = ?', [id], (err, results, fields) => {
         if (err) {
             console.log(err);
             return;
         }
         res.json({
-            ok: true,
             results
         })
     });
@@ -60,8 +59,9 @@ const getRolUser = (req, res) => {
 //actualizar la informacion del usuario
 const updateUser = (req, res) => {
     const { id } = req.params;
-    const {  email, phone1 } = req.body;
-    connection2.query('UPDATE mdl_user SET email = ?, phone1 = ? WHERE id = ?', [email, phone1, id], (err, results, fields) => {
+    const { email} = req.body;
+    const { phone1} = req.body;
+    connection2.query(`UPDATE mdl_user SET email = '${email}', phone1 = '${phone1}' WHERE id = ${id};`, (err, results, fields) => {
         if (err) {
             console.log(err);
             return;
