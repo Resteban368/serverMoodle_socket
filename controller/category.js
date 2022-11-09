@@ -28,7 +28,7 @@ const getCategory = (req, res) => {
 //para obtener un banner por id
 const getCategoryById = (req, res) => {
     const { id } = req.params;
-    connection2.query('SELECT * FROM mdl_course_categories WHERE id = ?', [id], (err, results, fields) => {
+    connection2.query('SELECT mcc.* FROM di.mdl_course_categories mcc join mdl_course mc on mc.category = mcc.id where mc.id=?', [id], (err, results, fields) => {
         if (err) {
             console.log(err);
             return;
@@ -43,7 +43,7 @@ const getCategoryById = (req, res) => {
 
 const getCourseUserById = (req, res) => {
     const { id } = req.params;
-    connection2.query('select c.* ,mcc.* FROM mdl_user u JOIN mdl_role_assignments ra ON u.id = ra.userid JOIN mdl_role r ON ra.roleid = r.id JOIN mdl_context ctx ON ra.contextid = ctx.id AND ctx.contextlevel = 50 JOIN mdl_course c ON ctx.instanceid = c.id join mdl_course_categories mcc on c.category = mcc.id  WHERE  u.id =?', [id], (err, results, fields) => {
+    connection2.query('select c.*, mcc.id as idcategory, mcc.name, mcc.description FROM mdl_user u JOIN mdl_role_assignments ra ON u.id = ra.userid JOIN mdl_role r ON ra.roleid = r.id JOIN mdl_context ctx ON ra.contextid = ctx.id AND ctx.contextlevel = 50 JOIN mdl_course c ON ctx.instanceid = c.id join mdl_course_categories mcc on c.category = mcc.id  WHERE  u.id =?', [id], (err, results, fields) => {
         if (err) {
             console.log(err);
             return;

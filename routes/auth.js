@@ -24,6 +24,7 @@ router.get('/tarea/:id', getDisparcherrById);
 
 // ruta para obtener las categorias y los cursos
 router.get('/todas', getCategory);
+router.get('/category/:id', getCategoryById);
 router.get('/course/:id', getCourseUserById);
 
 
