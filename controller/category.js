@@ -41,8 +41,30 @@ const getCategoryById = (req, res) => {
 }
 
 
+const getCourseUserById = (req, res) => {
+    const { id } = req.params;
+    connection2.query('select c.* ,mcc.* FROM mdl_user u JOIN mdl_role_assignments ra ON u.id = ra.userid JOIN mdl_role r ON ra.roleid = r.id JOIN mdl_context ctx ON ra.contextid = ctx.id AND ctx.contextlevel = 50 JOIN mdl_course c ON ctx.instanceid = c.id join mdl_course_categories mcc on c.category = mcc.id  WHERE  u.id =?', [id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.json({
+            ok: true,
+            results
+        })
+    });
+}
+
+
+
+
+
+
+
 
 module.exports = {
     getCategory,
-    getCategoryById
+    getCategoryById,
+    getCourseUserById
+    
 }

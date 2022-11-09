@@ -1,4 +1,4 @@
-// const { connection } = require('mongoose');
+
 const mysql = require('mysql');
 
 const dbConnection = async() => {
@@ -35,18 +35,3 @@ module.exports = {
 }
 
 
-
-// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-
-// // Donde rootcomo su usuario localhostcomo su URL y passwordcomo su contraseña
-
-// // Luego ejecute esta consulta para actualizar los privilegios:
-
-// // flush privileges;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-
-// // Donde rootcomo su usuario localhostcomo su URL y passwordcomo su contraseña
-
-// // Luego ejecute esta consulta para actualizar los privilegios:
-
-// flush privileges;
-// *//
