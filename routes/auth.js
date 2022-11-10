@@ -31,7 +31,9 @@ router.get('/course/:id', getCourseUserById);
 //ruta  informacion del usuario
 router.get('/usuarios', getUsers);
 router.get('/User/:id', getUserById);
-router.get('/Rol/:id', getRolUser);
+//ruta para obtener el rol del usuario dependiendo del id del usuario y del curso pasado por parametro
+router.get('/rol/:id/:courseid', getRolUser);
+
 router.put('/User/:id', updateUser);
 
 //ruta para obtener la hora del servidor

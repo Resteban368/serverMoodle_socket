@@ -28,7 +28,7 @@ const getUsers = (req, res) => {
 //para obtener un banner por id
 const getUserById = (req, res) => {
     const { id } = req.params;
-    connection2.query('SELECT * FROM mdl_user WHERE id = ?', [id], (err, results, fields) => {
+    connection2.query('SELECT * FROM mdl_user mu where mu.id =?', [id], (err, results, fields) => {
         if (err) {
             console.log(err);
             return;
@@ -41,10 +41,11 @@ const getUserById = (req, res) => {
 }
 
 
-//obtener el rol del usuario
+//obtener el rol del usuario dependiendo del id del curso
 const getRolUser = (req, res) => {
     const { id } = req.params;
-    connection2.query('SELECT * FROM mdl_role_assignments INNER JOIN mdl_role ON mdl_role_assignments.roleid = mdl_role.id where mdl_role_assignments.userid = ?', [id], (err, results, fields) => {
+    const { courseid } = req.params;
+    connection2.query('SELECT  c.fullname, mr.shortname, mu.firstname, mu.lastname , mu.username, mr.id as idRol, mcc.name , mcc.id as idCategory FROM mdl_user mu inner join mdl_role_assignments mra on mu.id=mra.userid  join mdl_role mr on mr.id=mra.roleid JOIN mdl_context ctx ON mra.contextid = ctx.id AND ctx.contextlevel = 50 JOIN mdl_course c ON ctx.instanceid = c.id join mdl_grade_categories mgc on c.id = mgc.courseid join mdl_course_categories mcc on c.category = mcc.id   where mu.id =? and c.id=?', [id,courseid], (err, results, fields) => {
         if (err) {
             console.log(err);
             return;
